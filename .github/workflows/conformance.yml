@@ -18,7 +18,8 @@ jobs:
         with:
           node-version: 22
       - run: npm install --prefix examples
-      - run: node examples/demo-server.mjs & echo $! > server.pid
+      - run: npm run build --prefix examples
+      - run: PORT=3123 node examples/demo-server.mjs & echo $! > server.pid
       - name: Wait for server
         run: |
           for i in $(seq 1 30); do
